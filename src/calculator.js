@@ -54,14 +54,14 @@ function power(a, b) {
 }
 
 // Square root (unary)
-function sqrt(a) {
-  if (a < 0) {
+function squareRoot(n) {
+  if (n < 0) {
     throw new Error('Square root of negative number');
   }
-  return Math.sqrt(a);
+  return Math.sqrt(n);
 }
 
-module.exports = { add, subtract, multiply, divide, modulo, power, sqrt };
+module.exports = { add, subtract, multiply, divide, modulo, power, squareRoot, sqrt: squareRoot };
 
 // CLI entrypoint
 if (require.main === module) {
@@ -126,7 +126,8 @@ if (require.main === module) {
     '**': 'power',
     'pow': 'power',
     'power': 'power',
-    'sqrt': 'sqrt'
+    'sqrt': 'squareRoot',
+    'squareroot': 'squareRoot'
   };
 
   const key = (opKey || '').toString();
@@ -139,10 +140,10 @@ if (require.main === module) {
 
     let result;
 
-    if (fnName === 'sqrt') {
-      const a = Number(aStr);
-      if (Number.isNaN(a)) throw new Error('Invalid numeric input');
-      result = sqrt(a);
+    if (fnName === 'squareRoot') {
+      const n = Number(aStr);
+      if (Number.isNaN(n)) throw new Error('Invalid numeric input');
+      result = squareRoot(n);
     } else {
       const a = Number(aStr);
       const b = Number(bStr);
